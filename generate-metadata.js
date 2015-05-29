@@ -18,18 +18,18 @@ var bPromise = require('bluebird')
 // Init //
 //------//
 
-var home = process.env.HOME;
-var fontsDir = path.join(home, 'data/fonts');
+var args = process.argv.slice(2);
+
+var fontsDir = './fonts';
 var fontsMetaData = {};
 var jsonMetadataFileName = 'METADATA.json';
-var a = 0;
 
 
 //------//
 // Main //
 //------//
 
-bGlob(path.join(fontsDir, '*/METADATA.json'))
+bGlob(path.join(fontsDir, '**/METADATA.json'))
     .then(function(files) {
         files = files.map(function(f) {
             return bPromise.join(
